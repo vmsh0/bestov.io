@@ -1,0 +1,36 @@
+{{- $classNames := slice "alert" -}}
+{{- /* Map severity to icon names */ -}}
+{{- $icons := dict
+  "info" "information-box"
+  "success" "check-circle"
+  "warning" "alert"
+  "error" "alert-circle"
+-}}
+{{- /* Get severity */ -}}
+{{- $sev := cond .IsNamedParams (.Get "severity") (.Get 0) -}}
+{{- if not (or (eq $sev "success") (eq $sev "warning") (eq $sev "error")) -}}
+  {{- $sev = "info" -}}
+{{- end -}}
+{{- $classNames = $classNames | append (printf "alert--%s" $sev) -}}
+{{- /* Get size */ -}}
+{{- $size := cond .IsNamedParams (.Get "size") (.Get 1) -}}
+{{- if eq $size "small" -}}
+  {{-  $classNames = $classNames | append (printf "alert--%s" $size) -}}
+{{- else -}}
+  {{- $size = "" -}}
+{{- end -}}
+{{- /* Build class names */ -}}
+{{- $classNames = delimit $classNames " " -}}
+{{- /* Get hideIcon */ -}}
+{{- $showIcon := cond .IsNamedParams (.Get "showIcon") (.Get 2) -}}
+{{- /* Output */ -}}
+<div class="{{ $classNames }}">
+  {{ if eq $showIcon "true" -}}
+    <div class="alert__icon">
+      {{ partial "icon.html" (dict "name" (index $icons $sev) "variant" $sev "size" $size) }}
+    </div>
+  {{ end -}}
+  <div class="alert__body">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

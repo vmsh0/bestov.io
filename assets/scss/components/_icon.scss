@@ -1,0 +1,67 @@
+:root {
+  --icon-vertical-align: middle;
+}
+@supports (height: 1cap) {
+  :root {
+    --icon-vertical-align: -0.4cap;
+  }
+}
+.icon {
+  display: inline-block;
+  vertical-align: var(--icon-vertical-align);
+  width: 24px;
+  height: 24px;
+
+  // Variant
+
+  &.icon--primary {
+    path {
+      fill: #0085fd;
+    }
+  }
+  &.icon--secondary {
+    path {
+      fill: #999;
+    }
+  }
+  &.icon--info {
+    path {
+      fill: #0085fd;
+    }
+  }
+  &.icon--success {
+    path {
+      fill: #2e7d32;
+    }
+  }
+  &.icon--warning {
+    path {
+      fill: #ed8f02;
+    }
+  }
+  &.icon--error {
+    path {
+      fill: #d32f2f;
+    }
+  }
+  &.icon--current {
+    path {
+      fill: currentColor;
+    }
+  }
+
+  // Size
+  
+  &.icon--large {
+    width: 32px;
+    height: 32px;
+  }
+  &.icon--medium {
+    width: 24px;
+    height: 24px;
+  }
+  &.icon--small {
+    width: 20px;
+    height: 20px;
+  }
+}

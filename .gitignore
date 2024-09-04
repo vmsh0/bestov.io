@@ -1,0 +1,5 @@
+.idea/
+private_drafts/
+public/
+
+.hugo_build.lock

@@ -1,0 +1,11 @@
+.highlight {
+  margin-bottom: 1rem;
+
+  & > * {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+  pre {
+    margin-bottom: 0;
+  }
+}
