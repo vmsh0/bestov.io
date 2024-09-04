@@ -1,0 +1,4 @@
+{{ define "main" }}
+  {{ $paginator := .Paginate (where (where .Site.Pages "Type" "blog") "IsPage" true) }}
+  {{ partial "posts.html" . }}
+{{ end }}
