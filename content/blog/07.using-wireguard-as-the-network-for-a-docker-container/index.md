@@ -140,9 +140,9 @@ If we look back at the commands we've used to configure `wg-in`, you will notice
 
 Let's piece it all together. The interface is created in the host, and as such it will use that network namespace to communicate with other WireGuard peers. But then it's immediately moved to the container namespace, so it doesn't actually pollute the host. At that point, we can configure it however we like and add network routes referring to it directly inside the container. The following illustrations show a schematic to wrap up what's going on in the kernel in our test setup (A), as well as an hypothetical setup where we have a remote WireGuard server in place of `wg-out` (B).
 
-![Illustration A](namespace-illustrations-A.png?classes=caption "Illustration A: the inner and outer WireGuard interfaces connect locally through sockets living in the same network namespace, even though one of the interfaces is in a different namespace.")
+![Illustration A](images/namespace-illustrations-A.png?classes=caption "Illustration A: the inner and outer WireGuard interfaces connect locally through sockets living in the same network namespace, even though one of the interfaces is in a different namespace.")
 
-![Illustration B](namespace-illustrations-B.png?classes=caption "Illustration B: the container WireGuard interface connects to a remote WireGuard peer through the host namespace.")
+![Illustration B](images/namespace-illustrations-B.png?classes=caption "Illustration B: the container WireGuard interface connects to a remote WireGuard peer through the host namespace.")
 
 {{< alert severity="success" >}}
 Exercise for the reader: find out whether, during the `ip link` command, there exists an interval of time when the interface actually *exists* in the host namespace, before getting moved to the container namespace. If you feel like, share your methodology and results by sending me an email.
